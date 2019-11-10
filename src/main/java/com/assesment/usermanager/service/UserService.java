@@ -22,18 +22,25 @@ public class UserService {
 
     public UserProfile getUserProfile(String username) {
         log.info("User Profile request received. Requesting user store in " + userStoreUrl);
-        ResponseEntity<User> user = getUser(username);
-        if (user.getStatusCode() == HttpStatus.OK) {
-            return toUserProfile(user.getBody());
+        try {
+            ResponseEntity<User> user = getUser(username);
+            if (user.getStatusCode() == HttpStatus.OK) {
+                return toUserProfile(user.getBody());
+            }
+        } catch (Exception e) {
+            return null;
         }
-
         return null;
     }
 
     public boolean isValidCredentials(String username, String password) {
-        ResponseEntity<User> user = getUser(username);
-        if (user.getStatusCode() == HttpStatus.OK) {
-            return password.equals(user.getBody().getPassword());
+        try {
+            ResponseEntity<User> user = getUser(username);
+            if (user.getStatusCode() == HttpStatus.OK) {
+                return password.equals(user.getBody().getPassword());
+            }
+        } catch (Exception e) {
+            return false;
         }
         return false;
     }

@@ -34,12 +34,6 @@ public class UserController {
                                                       @PathVariable String username) {
         log.info("get users called for username " + username + "and with toke: " + authToken);
 
-        if (!isTokenValid(username, authToken)) {
-            log.info("Invalid token");
-            Map<String, String> message = new HashMap();
-            message.put("message", "Invalid token");
-            return new ResponseEntity(message, HttpStatus.UNAUTHORIZED);
-        }
         final UserProfile userProfile = userService.getUserProfile(username);
 
         if (userProfile == null) {
@@ -47,10 +41,17 @@ public class UserController {
             Map<String, String> message = new HashMap();
             message.put("message", "No users found");
             return new ResponseEntity(message, HttpStatus.NOT_FOUND);
-        } else {
-            log.info("User found for username: " + username);
-            return new ResponseEntity(userProfile, HttpStatus.OK);
         }
+
+        if (!isTokenValid(username, authToken)) {
+            log.info("Invalid token");
+            Map<String, String> message = new HashMap();
+            message.put("message", "Invalid token");
+            return new ResponseEntity(message, HttpStatus.UNAUTHORIZED);
+        }
+
+        log.info("User found for username: " + username);
+        return new ResponseEntity(userProfile, HttpStatus.OK);
     }
 
     private boolean isTokenValid(String username, String authToken) {
