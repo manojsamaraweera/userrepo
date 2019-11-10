@@ -1,20 +1,17 @@
 package com.assesment.usermanager.service;
 
 import com.assesment.usermanager.entity.Token;
-import com.assesment.usermanager.entity.User;
-import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @Configuration
 @Log
+@Setter
 public class TokenService {
     private RestTemplate restTemplate = new RestTemplate();
     private String userStoreUrl = "http://localhost:8082/users";

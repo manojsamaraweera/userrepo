@@ -2,6 +2,7 @@ package com.assesment.usermanager.service;
 
 import com.assesment.usermanager.dto.UserProfile;
 import com.assesment.usermanager.entity.User;
+import lombok.Setter;
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @Configuration
 @Log
+@Setter
 public class UserService {
 
     private RestTemplate restTemplate = new RestTemplate();
