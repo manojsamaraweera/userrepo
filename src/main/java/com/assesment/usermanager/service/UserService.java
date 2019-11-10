@@ -18,7 +18,7 @@ public class UserService {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private String userStoreUrl = "http://localhost:8082/users";
+    private String userStoreUrl = "http://localhost:8282/users";
 
     public UserProfile getUserProfile(String username) {
         log.info("User Profile request received. Requesting user store in " + userStoreUrl);

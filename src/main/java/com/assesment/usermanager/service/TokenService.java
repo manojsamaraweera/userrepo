@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @Setter
 public class TokenService {
     private RestTemplate restTemplate = new RestTemplate();
-    private String userStoreUrl = "http://localhost:8082/users";
+    private String userStoreUrl = "http://localhost:8282/users";
 
     public boolean isValidToken(String username, String tokenStr) {
         log.info("Token Validate request received. Requesting token from user store in " + userStoreUrl);
